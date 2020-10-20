@@ -12,4 +12,5 @@ jobs:
         kubeconfig: ${{ secrets.KUBECONFIG }}
       id: setcontext
     - name: deploy
-      run: kubectl get service
+      run: kubectl get service 
+

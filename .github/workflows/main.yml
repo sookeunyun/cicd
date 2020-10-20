@@ -1,0 +1,12 @@
+name: my first workflow              # workflow 이름
+on: push                             # event trigger on push
+
+jobs:
+  build:                             # job id
+    name: Hello world action         # job 이름
+    runs-on: ubuntu-latest           # 가상 환경
+    steps:
+    - name: checkout source code     # step 01 이름
+      uses: actions/checkout@main    # 소스코드 checkout
+    - name: say hello                # step 02 이름
+      run: echo "hello world"        # linux command 실행

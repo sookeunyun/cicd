@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: predict
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: predict
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: predict
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  selector:
+    matchLabels:
+      app: predict
+  template:
+    metadata:
+      labels:
+        app: predict
+    spec:
+      containers:
+      - name: app
+        image: ysk1438/flask
+        imagePullPolicy: Always
+
+
